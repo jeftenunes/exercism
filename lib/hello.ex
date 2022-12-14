@@ -1,6 +1,6 @@
-defmodule Exercism do
+defmodule Hello do
   @moduledoc """
-  Documentation for `Exercism`.
+  Documentation for `Hello`.
   """
 
   @doc """
@@ -8,7 +8,7 @@ defmodule Exercism do
 
   ## Examples
 
-      iex> Exercism.hello()
+      iex> Hello.hello()
       :world
 
   """

@@ -9,7 +9,7 @@ defmodule Lasagna do
 
   @spec total_time_in_minutes(integer, integer) :: integer
   def total_time_in_minutes(layer_number, time_in_oven),
-    do: preparation_time_in_minutes(layer_number) + remaining_minutes_in_oven(time_in_oven)
+    do: preparation_time_in_minutes(layer_number) + time_in_oven
 
   def alarm(), do: "Ding!"
 end

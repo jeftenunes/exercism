@@ -19,15 +19,15 @@ defmodule LasagnaTests do
   end
 
   test "total preparation time for one layer" do
-    assert Lasagna.total_time_in_minutes(1, 30) === 12
+    assert Lasagna.total_time_in_minutes(1, 30) === 32
   end
 
   test "total preparation time for multiple layers" do
-    assert Lasagna.total_time_in_minutes(4, 8) === 40
+    assert Lasagna.total_time_in_minutes(4, 8) === 16
   end
 
   test "total preparation time should be the time per layer plus time in oven" do
-    assert Lasagna.total_time_in_minutes(1, 30) === 12
+    assert Lasagna.total_time_in_minutes(3, 20) === 26
   end
 
   test "alarm rings" do

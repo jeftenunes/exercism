@@ -36,11 +36,28 @@ defmodule MyList do
     reduce(tl, res, f)
   end
 
-  def zip([]), do: []
-  def zip([hd | _]) when hd === [], do: []
-  def zip([hd | tl]) when is_list(hd), do: zip(hd, tl)
+  def zip([hd1 | tl1], [hd2 | tl2]), do: [{hd1, hd2} | zip(tl1, tl2)]
 
-  def zip([hd1 | tl1], [hd2 | tl2]) do
-    [{hd1, hd2} | zip(tl1, tl2)]
+  def zip(_, []), do: []
+  def zip([], _), do: []
+
+  def zip([]), do: []
+  def zip([[] | _]), do: []
+  def zip([_ | []]), do: []
+  # def zip([hd | tl]) when is_list(hd) and is_list(tl) do
+  #   [map([hd | tl], fn lst -> hd(lst) end) | zip(get_tl([hd | tl]))]
+  # end
+
+  def zip([hd | tl]) when is_list(hd) and is_list(tl) do
+    [
+      reduce([hd | tl], {}, fn item, acc -> Tuple.append(acc, hd(item)) end)
+      | zip(get_tl([hd | tl]))
+    ]
   end
+
+  def get_tl([hd | tl]) do
+    [tl(hd) | get_tl(tl)]
+  end
+
+  def get_tl([]), do: []
 end

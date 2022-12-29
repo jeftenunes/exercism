@@ -6,10 +6,7 @@ defmodule MyList do
   end
 
   def flat([]), do: []
-
-  def flat([hd | tl]) when is_list(hd) do
-    flat(hd) ++ flat(tl)
-  end
+  def flat([hd | tl]) when is_list(hd), do: flat(hd) ++ flat(tl)
 
   def flat([hd | tl]) do
     [hd | flat(tl)]
@@ -18,16 +15,17 @@ defmodule MyList do
   def reverse([]), do: []
 
   def reverse([hd | tl]) do
-    reverse(tl) ++ [hd]
+    append(reverse(tl), hd)
   end
 
   def append([], val), do: [val]
 
-  def append([hd | tl], val), do: [hd | tl ++ [val]]
+  def append([hd | tl], val), do: [hd | append(tl, val)]
 
-  def prepend([], val), do: append([], val)
+  def prepend([hd | tl]), do: [hd | tl]
 
-  def prepend([hd | tl], val), do: [val] ++ [hd] ++ tl
+  def prepend([], val), do: [val]
+  def prepend([hd | tl], val), do: [val | [hd | prepend(tl)]]
 
   def reduce([], acc, _), do: acc
 
@@ -44,9 +42,6 @@ defmodule MyList do
   def zip([]), do: []
   def zip([[] | _]), do: []
   def zip([_ | []]), do: []
-  # def zip([hd | tl]) when is_list(hd) and is_list(tl) do
-  #   [map([hd | tl], fn lst -> hd(lst) end) | zip(get_tl([hd | tl]))]
-  # end
 
   def zip([hd | tl]) when is_list(hd) and is_list(tl) do
     [

@@ -32,6 +32,10 @@ defmodule LinkedList do
     end
   end
 
+  def pop(%__MODULE__{data: _, next: next}) do
+    next
+  end
+
   def is_empty(nil), do: true
 
   def is_empty(%__MODULE__{}), do: false

@@ -6,7 +6,9 @@ defmodule MyList do
   end
 
   def flat([]), do: []
-  def flat([hd | tl]) when is_list(hd), do: flat(hd) ++ flat(tl)
+
+  def flat([hd | tl]) when is_list(hd),
+    do: flat(hd) ++ flat(tl)
 
   def flat([hd | tl]) do
     [hd | flat(tl)]
